@@ -7,7 +7,7 @@ public class LogicHandler extends Draw{
     boolean running = false;
     int pointer=0;
     Scanner in = new Scanner(System.in);
-    public void startGame() {
+    public void startGame() { 			//First ran/menu screen
         setArrayContent(0,4,"1");
         System.out.println("Welcome to Terminal Invaders!");
         System.out.println("---    Debug      ---");
@@ -53,10 +53,7 @@ public class LogicHandler extends Draw{
                 debug();
             }else if(opt.equalsIgnoreCase("shoot")){
                 setArrayZero();
-                enemy();
-                setArrayContent(pointer,4,"1");
                 shoot();
-                update();
             }
             if(pointer < 0) {
                 running = false;        //Collision with left wall
@@ -90,9 +87,17 @@ public class LogicHandler extends Draw{
         randomY++;
     }
     private void shoot() {
-        int pointeradd = 3;
-        int trajectory = pointer;
-        setArrayContent(trajectory,pointeradd,"*");
-        pointeradd++;
+	int pointeradd = 3;
+	for(int g=0;pointeradd>g;g++) {
+		setArrayZero();
+        	int trajectory = pointer;
+        	setArrayContent(trajectory,pointeradd,"*");
+        	pointeradd--;
+		update();
+		delay(1000);
+	}
+    }
+    private void delay(int time) {
+	Thread.sleep(time);
     }
 }
